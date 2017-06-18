@@ -112,7 +112,11 @@ namespace BoletimFIAP.WebAcess
         }
 
         public static bool PegarBoletim()
-        {            
+        {
+            if (!WebUtils.internet())
+            {
+                return false;
+            }            
             CookieCollection cookies = new CookieCollection();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL_BASE + URL_BOLETIM);
             request.CookieContainer = Cookies;

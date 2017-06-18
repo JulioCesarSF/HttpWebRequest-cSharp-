@@ -224,6 +224,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Boletim | Júlio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Move += new System.EventHandler(this.Form1_Move);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

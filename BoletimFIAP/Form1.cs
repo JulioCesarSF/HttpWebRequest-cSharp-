@@ -18,7 +18,7 @@ namespace BoletimFIAP
         Thread thread;
         delegate void ListBoxStatus(string mensagem);
 
-        private volatile bool pararThread;
+        private volatile bool pararThread = true;
 
         private volatile int tempo = 30 * 1000;
 
@@ -33,7 +33,7 @@ namespace BoletimFIAP
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            if (btnIniciar.Text.Equals("Iniciar"))
+            if (btnIniciar.Text.Equals("Iniciar") && pararThread)
             {
                 pararThread = false;
                 thread = new Thread(Iniciar);
@@ -71,13 +71,23 @@ namespace BoletimFIAP
                 if (Web.LoginPost(txtRm.Text, txtSenha.Text))
                 {
                     this.Invoke((MethodInvoker)(() => AddItemStatus("Adquirindo tokens.")));
-                    if (Web.PosLoginGET())
+                    while (!Web.PosLoginGET())
                     {
-                        this.Invoke((MethodInvoker)(() => AddItemStatus("Autenticação [OK].")));
+                        this.Invoke((MethodInvoker)(() => AddItemStatus("Autenticação [FAIL]. Restarting..")));
+                        this.Invoke((MethodInvoker)(() => SetButton(true)));
+                    }
 
-                        while (!pararThread)
+                    this.Invoke((MethodInvoker)(() => AddItemStatus("Autenticação [OK].")));
+
+                    while (!pararThread)
+                    {
+                        if (!Web.PegarBoletim())
                         {
-                            Web.PegarBoletim();
+                            this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [FAIL][" + verificacaoBoletim + "].")));
+                            this.Invoke((MethodInvoker)(() => SetButton(true)));
+                        }
+                        else
+                        {
                             verificacaoBoletim++;
                             this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [OK][" + verificacaoBoletim + "].")));
                             if (Web.novaNota)
@@ -85,20 +95,21 @@ namespace BoletimFIAP
                                 this.Invoke((MethodInvoker)(() => AddItemStatus("Saiu nota nova!")));
                                 this.Invoke((MethodInvoker)(() => ShowBallonNota()));
                             }
-                            Thread.Sleep(tempo);
                         }
+
+                        Thread.Sleep(tempo);
                     }
                 }
                 else
                 {
                     this.Invoke((MethodInvoker)(() => AddItemStatus("RM/Senha incorretos!")));
-                    this.Invoke((MethodInvoker)(() => SetButton()));
+                    this.Invoke((MethodInvoker)(() => SetButton(false)));
                 }
             }
             else
             {
-                this.Invoke((MethodInvoker)(() => AddItemStatus(PegarData("Sem conexão!"))));
-                this.Invoke((MethodInvoker)(() => SetButton()));
+                this.Invoke((MethodInvoker)(() => AddItemStatus("Sem conexão!")));
+                this.Invoke((MethodInvoker)(() => SetButton(false)));
             }
         }
 
@@ -129,9 +140,10 @@ namespace BoletimFIAP
             tempo = PegarTempo();
         }
 
-        private void SetButton()
-        {
+        private void SetButton(bool reset)
+        {            
             btnIniciar.PerformClick();
+            if (reset) btnIniciar.PerformClick();
         }
 
         private void mostrarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -141,7 +153,7 @@ namespace BoletimFIAP
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetButton();
+            SetButton(false);
             Application.Exit();
         }
 
@@ -164,6 +176,12 @@ namespace BoletimFIAP
         {
             this.Show();
             this.BringToFront();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!pararThread)
+                SetButton(false);
         }
     }
 }
