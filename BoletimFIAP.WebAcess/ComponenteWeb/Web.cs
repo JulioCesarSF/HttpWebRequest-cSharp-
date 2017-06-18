@@ -21,6 +21,8 @@ namespace BoletimFIAP.WebAcess
         public static string oldStringHtml = "";
         public static string stringHtml = "";
 
+        private static string verificarHtml = "";
+
         public static volatile bool novaNota = false;
 
         private static CookieContainer Cookies = new CookieContainer();
@@ -136,24 +138,26 @@ namespace BoletimFIAP.WebAcess
                     Stream receiveStream = response.GetResponseStream();
                     StreamReader readStream = null;
 
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding("UTF-8"));
 
-                    stringHtml = WebUtils.ParseHtml(readStream.ReadToEnd());
+                    stringHtml = readStream.ReadToEnd();
+
+                    verificarHtml = WebUtils.ParseHtml(stringHtml);
 
                     if (boletimTry == 0)
                     {
-                        oldStringHtml = stringHtml;
+                        oldStringHtml = verificarHtml;
                     }
                     else
                     {
-                        if (stringHtml.Equals(oldStringHtml))
+                        if (verificarHtml.Equals(oldStringHtml))
                         {
                             novaNota = false;
                         }
                         else
                         {
                             novaNota = true;
-                            oldStringHtml = stringHtml;
+                            oldStringHtml = verificarHtml;
                         }
                     }
 

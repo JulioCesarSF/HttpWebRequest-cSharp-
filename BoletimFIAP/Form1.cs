@@ -102,7 +102,9 @@ namespace BoletimFIAP
                         else
                         {
                             verificacaoBoletim++;
+                            this.Invoke((MethodInvoker)(() => WebUtils.MontarBoletim(Web.stringHtml, boletimTree)));
                             this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [OK][" + verificacaoBoletim + "].")));
+
                             if (Web.novaNota)
                             {
                                 this.Invoke((MethodInvoker)(() => AddItemStatus("Saiu nota nova!")));

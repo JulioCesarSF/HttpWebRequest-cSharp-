@@ -1,0 +1,17 @@
+﻿1>------ Build started: Project: BoletimFIAP.WebAcess, Configuration: Release Any CPU ------
+1>  BoletimFIAP.WebAcess -> C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.WebAcess\bin\Release\BoletimFIAP.WebAcess.dll
+2>------ Build started: Project: BoletimFIAP, Configuration: Release Any CPU ------
+2>    Fody: Fody (version 2.0.0.0) Executing
+2>      Fody/Costura:   	No reference to 'Costura.dll' found. References not modified.
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Release\BoletimFIAP.Dominio.dll'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Release\BoletimFIAP.Dominio.pdb'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.WebAcess\bin\Release\BoletimFIAP.WebAcess.dll'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.WebAcess\bin\Release\BoletimFIAP.WebAcess.pdb'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Release\Newtonsoft.Json.dll'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.WebAcess\bin\Release\HtmlAgilityPack.dll'
+2>      Fody/Costura:   	Embedding 'C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP.WebAcess\bin\Release\HtmlAgilityPack.pdb'
+2>    Fody:   Finished Fody 77ms.
+2>    Fody:   Skipped Verifying assembly since it is disabled in configuration
+2>    Fody:   Finished verification in 0ms.
+2>  BoletimFIAP -> C:\Users\schin\Documents\Visual Studio 2015\Projects\BoletimFIAP\BoletimFIAP\bin\Release\BoletimFIAP.exe
+========== Build: 2 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
