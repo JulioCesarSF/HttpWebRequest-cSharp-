@@ -83,6 +83,7 @@
             this.txtSenha.Size = new System.Drawing.Size(100, 20);
             this.txtSenha.TabIndex = 3;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // label2
             // 
@@ -148,7 +149,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Frequencia de Atualização";
+            this.label3.Text = "Frequência de Atualização";
             // 
             // cbTempo
             // 

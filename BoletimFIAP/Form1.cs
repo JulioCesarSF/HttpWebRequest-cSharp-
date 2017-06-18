@@ -24,6 +24,7 @@ namespace BoletimFIAP
 
         private volatile int tentativasAcesso = 0;
         private volatile int verificacaoBoletim = 0;
+        private volatile int verificacaoBoletimFail = 0;
 
         public Form1()
         {
@@ -39,6 +40,8 @@ namespace BoletimFIAP
                 thread = new Thread(Iniciar);
                 thread.Start();
                 btnIniciar.Text = "Parar";
+                txtRm.Enabled = false;
+                txtSenha.Enabled = false;
             }
             else
             {
@@ -46,6 +49,8 @@ namespace BoletimFIAP
                 btnIniciar.Text = "Iniciar";
                 if (thread.IsAlive) thread.Abort();
                 AddItemStatus("Parou.");
+                txtRm.Enabled = true;
+                txtSenha.Enabled = true;
             }
         }
 
@@ -64,7 +69,7 @@ namespace BoletimFIAP
                 while (!WebUtils.site(Web.URL_BASE))
                 {
                     tentativasAcesso++;
-                    this.Invoke((MethodInvoker)(() => AddItemStatus("Site inacessível/fora do ar [" + tentativasAcesso + "]. Auto-Retry...")));
+                    this.Invoke((MethodInvoker)(() => AddItemStatus("Site inacessível [" + tentativasAcesso + "]. Auto-Retry...")));
                 }
 
                 this.Invoke((MethodInvoker)(() => AddItemStatus("Iniciando..")));
@@ -83,8 +88,16 @@ namespace BoletimFIAP
                     {
                         if (!Web.PegarBoletim())
                         {
-                            this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [FAIL][" + verificacaoBoletim + "].")));
-                            this.Invoke((MethodInvoker)(() => SetButton(true)));
+                            verificacaoBoletimFail++;
+                            if (verificacaoBoletimFail <= 3)
+                            {
+                                this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [FAIL][" + verificacaoBoletimFail + "].")));
+                                this.Invoke((MethodInvoker)(() => SetButton(true)));
+                            }else if(verificacaoBoletimFail > 3)
+                            {
+                                this.Invoke((MethodInvoker)(() => AddItemStatus("Boletim [FAIL][" + verificacaoBoletimFail + "].")));
+                                this.Invoke((MethodInvoker)(() => SetButton(false)));
+                            }                            
                         }
                         else
                         {
@@ -182,6 +195,14 @@ namespace BoletimFIAP
         {
             if(!pararThread)
                 SetButton(false);
+        }
+
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
+            {
+                SetButton(false);
+            }
         }
     }
 }

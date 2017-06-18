@@ -15,7 +15,7 @@ namespace BoletimFIAP.WebAcess
         public static string URL_BASE = "https://www2.fiap.com.br";
         private static string URL_LOGIN = "/Aluno/LogOn";
         private static string URL_BOLETIM = "/Aluno/Boletim";
-        private static int loginTry = 0;
+        //private static int loginTry = 0;
         private static int boletimTry = 0;
 
         public static string oldStringHtml = "";
@@ -44,9 +44,7 @@ namespace BoletimFIAP.WebAcess
             request.Host = "www2.fiap.com.br";
             request.AllowAutoRedirect = false;
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-
-            HttpWebResponse response = null;
-
+                       
             try
             {
                 using (var requestStream = request.GetRequestStream())
@@ -54,27 +52,24 @@ namespace BoletimFIAP.WebAcess
                     writer.Write("urlRedirecionamento=&usuario=" + rm + "&senha=" + senha);
 
                 //pegar cookies da response
-                response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.Found)
+                using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    getLocation(response.Headers);
-                    getCookies(response.Cookies);
+                    if (response.StatusCode == HttpStatusCode.Found)
+                    {
+                        getLocation(response.Headers);
+                        getCookies(response.Cookies);
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
-
             }
             catch (Exception)
             {
                 return false;
             }
-            finally
-            {
-                response.Close();
-            }
+
             return true;
         }
 
@@ -96,15 +91,17 @@ namespace BoletimFIAP.WebAcess
 
             try
             {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response.StatusCode == HttpStatusCode.Moved)
+                    {
+                        getCookies(response.Cookies);
+                    }
+                }
 
-                getCookies(response.Cookies);
-
-                response.Close();
             }
             catch (Exception)
             {
-
                 return false;
             }
 
@@ -116,7 +113,7 @@ namespace BoletimFIAP.WebAcess
             if (!WebUtils.internet())
             {
                 return false;
-            }            
+            }
             CookieCollection cookies = new CookieCollection();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL_BASE + URL_BOLETIM);
             request.CookieContainer = Cookies;
@@ -139,31 +136,25 @@ namespace BoletimFIAP.WebAcess
                     Stream receiveStream = response.GetResponseStream();
                     StreamReader readStream = null;
 
-                    if (response.CharacterSet == null)
-                    {
-                        readStream = new StreamReader(receiveStream);
-                    }
-                    else
-                    {
-                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                    }
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                     stringHtml = WebUtils.ParseHtml(readStream.ReadToEnd());
 
-                    if(boletimTry == 0)
+                    if (boletimTry == 0)
                     {
-                        oldStringHtml = stringHtml;                        
+                        oldStringHtml = stringHtml;
                     }
                     else
                     {
                         if (stringHtml.Equals(oldStringHtml))
                         {
                             novaNota = false;
-                        }else
+                        }
+                        else
                         {
                             novaNota = true;
                             oldStringHtml = stringHtml;
-                        }                        
+                        }
                     }
 
                     boletimTry++;
