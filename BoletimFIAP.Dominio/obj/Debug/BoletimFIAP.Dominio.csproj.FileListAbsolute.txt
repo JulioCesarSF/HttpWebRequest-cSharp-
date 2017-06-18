@@ -1,0 +1,7 @@
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Debug\BoletimFIAP.Dominio.dll
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Debug\BoletimFIAP.Dominio.pdb
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Debug\Newtonsoft.Json.dll
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\bin\Debug\Newtonsoft.Json.xml
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\obj\Debug\BoletimFIAP.Dominio.csprojResolveAssemblyReference.cache
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\obj\Debug\BoletimFIAP.Dominio.dll
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP.Dominio\obj\Debug\BoletimFIAP.Dominio.pdb

@@ -1,0 +1,9 @@
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\bin\Release\BoletimFIAP.exe.config
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\bin\Release\BoletimFIAP.exe
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\bin\Release\BoletimFIAP.pdb
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.csprojResolveAssemblyReference.cache
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.Form1.resources
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.Properties.Resources.resources
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.csproj.GenerateResource.Cache
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.exe
+c:\users\schin\documents\visual studio 2015\Projects\BoletimFIAP\BoletimFIAP\obj\Release\BoletimFIAP.pdb

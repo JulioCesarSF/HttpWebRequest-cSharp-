@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoletimFIAP", "BoletimFIAP\BoletimFIAP.csproj", "{8F920909-83C9-45AD-81B8-8AFA862CF440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoletimFIAP.WebAcess", "BoletimFIAP.WebAcess\BoletimFIAP.WebAcess.csproj", "{F8758FBD-6AB4-4CD5-ABC2-BF8A341B294D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoletimFIAP.Dominio", "BoletimFIAP.Dominio\BoletimFIAP.Dominio.csproj", "{36EC66C5-B446-41D3-97CC-E7F8B6F3BBF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F920909-83C9-45AD-81B8-8AFA862CF440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F920909-83C9-45AD-81B8-8AFA862CF440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F920909-83C9-45AD-81B8-8AFA862CF440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F920909-83C9-45AD-81B8-8AFA862CF440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8758FBD-6AB4-4CD5-ABC2-BF8A341B294D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8758FBD-6AB4-4CD5-ABC2-BF8A341B294D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8758FBD-6AB4-4CD5-ABC2-BF8A341B294D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8758FBD-6AB4-4CD5-ABC2-BF8A341B294D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EC66C5-B446-41D3-97CC-E7F8B6F3BBF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EC66C5-B446-41D3-97CC-E7F8B6F3BBF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EC66C5-B446-41D3-97CC-E7F8B6F3BBF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EC66C5-B446-41D3-97CC-E7F8B6F3BBF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
